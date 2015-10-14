@@ -149,7 +149,16 @@ void decimal_binary(int n)  /* Function to convert decimal to binary.*/
 {
 	if(n==1||n==0)
 	{
-		lcd_print(1,count,n,1);
+		if(n%2==0)
+		{
+			
+			buzzer_off();
+			_delay_ms(1000);		//delay
+		}
+		else
+		{ buzzer_on();
+			_delay_ms(1000);		//delay
+		}
 		count++;
 		_delay_ms(1000);
 		return;
@@ -157,7 +166,16 @@ void decimal_binary(int n)  /* Function to convert decimal to binary.*/
 	else
 	{
 		decimal_binary(n/2);
-		lcd_print(1,count,n%2,1);
+		if(n%2==0)
+		{
+			
+			buzzer_off();
+			_delay_ms(1000);		//delay
+		}
+		else
+		{ buzzer_on();
+		_delay_ms(1000);		//delay
+		}		
 		count++;
 		_delay_ms(1000);
 	}
@@ -173,19 +191,16 @@ int main(void)
 	for(int i=0;i<5;i++)
 	{
 		number[i]=(int)word[i];	
-		lcd_print(1,0,number[i],2);
+		//lcd_print(1,0,number[i],2);
 		_delay_ms(1000);
 		count=1;
 		decimal_binary(number[i]);
 		
 	}		
 	
-	/*{
-		buzzer_on();
-		_delay_ms(1000);		//delay
-		buzzer_off();
-		_delay_ms(1000);		//delay
-	}*/
+	
+		
+	
 }
 
 
